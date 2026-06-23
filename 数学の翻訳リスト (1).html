@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>数学の翻訳リスト｜問題文キーワード→解法対応表</title>
+<script>
+  MathJax = {
+    tex: { inlineMath: [['\\(','\\)'], ['$','$']], displayMath: [['\\[','\\]'], ['$$','$$']] },
+    options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<style>
+  :root {
+    --bg: #F8F9FC;
+    --surface: #FFFFFF;
+    --text: #1A1A1A;
+    --accent: #1A3A6B;
+    --accent-light: #EBF0FA;
+    --accent-mid: #4A6FA5;
+    --algebra: #1A5C3A;
+    --algebra-light: #E8F5EE;
+    --geo: #7A3B00;
+    --geo-light: #FBF3EA;
+    --calc: #1A3A6B;
+    --calc-light: #EBF0FA;
+    --stat: #5A1A6B;
+    --stat-light: #F5EBFA;
+    --danger: #C0392B;
+    --danger-light: #FDF0EF;
+    --success: #1A6B3C;
+    --success-light: #EAF6EE;
+    --rule: #D8E0EE;
+    --code-bg: #F0F3FA;
+    --radius: 8px;
+    --gap: 4em;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif; font-size: 16px; line-height: 1.85; padding: 0 1em; }
+  .container { max-width: 860px; margin: 0 auto; padding: 3em 0 6em; }
+
+  h1 { font-size: 1.6em; font-weight: 900; line-height: 1.4; color: var(--accent); border-left: 6px solid var(--accent); padding-left: 0.6em; margin-bottom: 0.6em; }
+  .subtitle { color: var(--accent-mid); font-size: 0.9em; margin-bottom: var(--gap); padding-left: 1em; }
+
+  nav { background: var(--accent-light); border-radius: var(--radius); padding: 1.2em 1.6em; margin-bottom: var(--gap); border-left: 4px solid var(--accent-mid); }
+  nav p.nav-title { font-weight: 800; color: var(--accent); margin-bottom: 0.6em; font-size: 0.9em; letter-spacing: 0.05em; }
+  nav ol { margin: 0; padding-left: 1.4em; color: var(--accent); font-size: 0.9em; line-height: 2.1; }
+  nav a { color: var(--accent); text-decoration: none; }
+
+  h2 { font-size: 1.2em; font-weight: 800; margin-top: var(--gap); margin-bottom: 1em; padding-bottom: 0.35em; border-bottom: 2px solid var(--rule); color: var(--text); }
+  h3 { font-size: 1em; font-weight: 700; margin-top: 2.5em; margin-bottom: 0.7em; }
+  p { margin-bottom: var(--gap); }
+  strong { color: var(--accent); font-weight: 700; }
+  hr { border: none; border-top: 2px solid var(--rule); margin: var(--gap) 0; }
+
+  /* 4分野カードグリッド */
+  .domain-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1em; margin-bottom: var(--gap); }
+  @media (max-width: 540px) { .domain-grid { grid-template-columns: 1fr; } }
+
+  .domain-card { border-radius: var(--radius); overflow: hidden; border: 2px solid; }
+  .domain-card.algebra  { border-color: var(--algebra); }
+  .domain-card.geo      { border-color: var(--geo); }
+  .domain-card.calc     { border-color: var(--calc); }
+  .domain-card.stat     { border-color: var(--stat); }
+
+  .dc-header { padding: 0.55em 1em; font-weight: 900; font-size: 0.9em; color: #fff; }
+  .algebra  .dc-header { background: var(--algebra); }
+  .geo      .dc-header { background: var(--geo); }
+  .calc     .dc-header { background: var(--calc); }
+  .stat     .dc-header { background: var(--stat); }
+
+  .dc-body { background: var(--surface); padding: 0.8em 1em; }
+  .dc-row { display: flex; gap: 0.5em; margin-bottom: 0.45em; font-size: 0.85em; }
+  .dc-label { flex-shrink: 0; font-weight: 800; font-size: 0.78em; letter-spacing: 0.04em; padding: 0.1em 0.45em; border-radius: 3px; }
+  .algebra  .dc-label { background: var(--algebra-light); color: var(--algebra); }
+  .geo      .dc-label { background: var(--geo-light); color: var(--geo); }
+  .calc     .dc-label { background: var(--calc-light); color: var(--calc); }
+  .stat     .dc-label { background: var(--stat-light); color: var(--stat); }
+  .dc-content { line-height: 1.7; color: var(--text); }
+
+  /* メリット・デメリット表 */
+  .merit-table { width: 100%; border-collapse: collapse; margin-bottom: 1.5em; font-size: 0.88em; }
+  .merit-table th { padding: 0.5em 0.8em; text-align: left; font-weight: 800; color: #fff; }
+  .merit-table td { padding: 0.55em 0.8em; border-bottom: 1px solid var(--rule); vertical-align: top; line-height: 1.7; }
+  .merit-table tr:last-child td { border-bottom: none; }
+  .merit-table tr:nth-child(even) td { background: #F8F9FC; }
+  .th-merit   { background: var(--success); }
+  .th-demerit { background: var(--danger); }
+  .merit-table td.merit-cell   { border-left: 3px solid var(--success); }
+  .merit-table td.demerit-cell { border-left: 3px solid var(--danger); }
+
+  /* 翻訳リスト */
+  .trans-section { margin-bottom: var(--gap); }
+  .trans-header { display: flex; align-items: center; gap: 0.6em; margin-bottom: 0.7em; }
+  .trans-badge { padding: 0.2em 0.7em; border-radius: 4px; font-weight: 900; font-size: 0.8em; color: #fff; }
+  .algebra-badge { background: var(--algebra); }
+  .geo-badge     { background: var(--geo); }
+  .calc-badge    { background: var(--calc); }
+  .stat-badge    { background: var(--stat); }
+  .cross-badge   { background: var(--accent-mid); }
+
+  .trans-table { width: 100%; border-collapse: collapse; margin-bottom: 1em; font-size: 0.87em; }
+  .trans-table th { padding: 0.5em 0.8em; text-align: left; font-weight: 800; color: #fff; font-size: 0.85em; }
+  .trans-table td { padding: 0.6em 0.8em; border-bottom: 1px solid var(--rule); vertical-align: top; line-height: 1.75; }
+  .trans-table tr:last-child td { border-bottom: none; }
+  .trans-table tr:hover td { background: var(--accent-light); }
+  .trans-table td.kw { font-weight: 700; font-size: 0.9em; }
+  .trans-table td.arrow { text-align: center; color: var(--accent-mid); font-size: 1.1em; width: 2em; }
+  .trans-table td.method { color: var(--accent); font-weight: 600; }
+  .trans-table td.note { color: #555; font-size: 0.85em; }
+  .algebra  .trans-table th { background: var(--algebra); }
+  .geo      .trans-table th { background: var(--geo); }
+  .calc     .trans-table th { background: var(--calc); }
+  .stat     .trans-table th { background: var(--stat); }
+  .cross    .trans-table th { background: var(--accent-mid); }
+
+  /* 解法メリデメ */
+  .method-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 0.8em; margin-bottom: var(--gap); }
+  @media (max-width: 600px) { .method-grid { grid-template-columns: 1fr; } }
+  .method-card { border-radius: var(--radius); border: 1px solid var(--rule); background: var(--surface); overflow: hidden; }
+  .mc-header { background: var(--code-bg); padding: 0.5em 0.9em; font-weight: 800; font-size: 0.88em; color: var(--accent); border-bottom: 1px solid var(--rule); }
+  .mc-body { padding: 0.7em 0.9em; font-size: 0.85em; }
+  .mc-merit { color: var(--success); font-weight: 700; font-size: 0.78em; letter-spacing: 0.04em; display: block; margin-bottom: 0.2em; margin-top: 0.5em; }
+  .mc-demerit { color: var(--danger); font-weight: 700; font-size: 0.78em; letter-spacing: 0.04em; display: block; margin-bottom: 0.2em; margin-top: 0.6em; }
+  .mc-body p { margin-bottom: 0.3em; line-height: 1.7; color: var(--text); font-size: 1em; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>数学の翻訳リスト</h1>
+<p class="subtitle">問題文のキーワード → 使う解法・定理の対応表 ／ 4分野の全体像と解法の選び方</p>
+
+<nav>
+  <p class="nav-title">目次</p>
+  <ol>
+    <li><a href="#overview">4分野の全体像</a></li>
+    <li><a href="#merit">各分野のメリット・デメリット</a></li>
+    <li><a href="#method-merit">主要解法のメリット・デメリット</a></li>
+    <li><a href="#trans-algebra">翻訳リスト｜代数</a></li>
+    <li><a href="#trans-geo">翻訳リスト｜幾何</a></li>
+    <li><a href="#trans-calc">翻訳リスト｜解析</a></li>
+    <li><a href="#trans-stat">翻訳リスト｜統計・確率</a></li>
+    <li><a href="#trans-cross">翻訳リスト｜分野横断キーワード</a></li>
+  </ol>
+</nav>
+
+<!-- ===== 4分野の全体像 ===== -->
+<h2 id="overview">4分野の全体像</h2>
+
+<p>数学の問題は大きく4つの分野に分かれます。問題文を読んだとき、まず「この問題はどの分野か」を特定することが③翻訳の出発点です。</p>
+
+<div class="domain-grid">
+  <div class="domain-card algebra">
+    <div class="dc-header">🔢 代数（Algebra）</div>
+    <div class="dc-body">
+      <div class="dc-row"><span class="dc-label">範囲</span><span class="dc-content">数と式、方程式・不等式、整数、数列、場合の数・確率（計算系）</span></div>
+      <div class="dc-row"><span class="dc-label">道具</span><span class="dc-content">因数分解、展開、整数論（合同式）、漸化式、数学的帰納法</span></div>
+      <div class="dc-row"><span class="dc-label">入試比重</span><span class="dc-content">共通テスト：高。記述式：中〜高。整数は難関大で頻出</span></div>
+    </div>
+  </div>
+  <div class="domain-card geo">
+    <div class="dc-header">📐 幾何（Geometry）</div>
+    <div class="dc-body">
+      <div class="dc-row"><span class="dc-label">範囲</span><span class="dc-content">平面図形、空間図形、ベクトル、座標幾何、三角比・三角関数</span></div>
+      <div class="dc-row"><span class="dc-label">道具</span><span class="dc-content">三角比、余弦定理・正弦定理、ベクトル演算、座標計算、補助線</span></div>
+      <div class="dc-row"><span class="dc-label">入試比重</span><span class="dc-content">共通テスト：中〜高。ベクトルは記述式でほぼ必出</span></div>
+    </div>
+  </div>
+  <div class="domain-card calc">
+    <div class="dc-header">∫ 解析（Analysis）</div>
+    <div class="dc-body">
+      <div class="dc-row"><span class="dc-label">範囲</span><span class="dc-content">極限、微分、積分、関数の増減、面積・体積計算</span></div>
+      <div class="dc-row"><span class="dc-label">道具</span><span class="dc-content">微分法・積分法、増減表、絶対値の処理、置換・部分積分</span></div>
+      <div class="dc-row"><span class="dc-label">入試比重</span><span class="dc-content">理系入試で最重要。文系でも微積の基礎は必須</span></div>
+    </div>
+  </div>
+  <div class="domain-card stat">
+    <div class="dc-header">📊 統計・確率（Statistics）</div>
+    <div class="dc-body">
+      <div class="dc-row"><span class="dc-label">範囲</span><span class="dc-content">確率、確率分布、期待値・分散、統計的推測</span></div>
+      <div class="dc-row"><span class="dc-label">道具</span><span class="dc-content">加法定理・乗法定理、条件付き確率、二項分布、正規分布</span></div>
+      <div class="dc-row"><span class="dc-label">入試比重</span><span class="dc-content">共通テスト：高（統計分野が増加傾向）。記述式：中</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 各分野のメリット・デメリット ===== -->
+<h2 id="merit">各分野のメリット・デメリット</h2>
+<p>各分野には「得意にしたときのリターン」と「躓きやすいポイント」があります。自分がどの分野に時間を投じるべきかの判断材料にしてください。</p>
+
+<h3 style="color:var(--algebra)">🔢 代数</h3>
+<table class="merit-table">
+  <tr><th class="th-merit">メリット</th><th class="th-demerit">デメリット・注意点</th></tr>
+  <tr><td class="merit-cell">計算力があれば安定して得点できる。パターンが比較的明確で、暗記＋練習で伸びやすい</td>
+      <td class="demerit-cell">整数問題は発想力が必要で、難関大では差がつきやすい。数列の漸化式は式の変形ミスが多い</td></tr>
+  <tr><td class="merit-cell">因数分解・展開は他分野の道具にもなる。代数が強いと全分野の計算処理が速くなる</td>
+      <td class="demerit-cell">「数式をこねくり回す」問題は試行錯誤が必要。方針が立たないと時間を大量消費する</td></tr>
+  <tr><td class="merit-cell">共通テストでは数Ⅰの二次方程式・不等式など基礎問題の配点が大きく、コスパがよい</td>
+      <td class="demerit-cell">整数の証明は「ひらめき」に見えるが、翻訳の型（合同式・背理法・帰納法）を知っていれば対応可</td></tr>
+</table>
+
+<h3 style="color:var(--geo)">📐 幾何</h3>
+<table class="merit-table">
+  <tr><th class="th-merit">メリット</th><th class="th-demerit">デメリット・注意点</th></tr>
+  <tr><td class="merit-cell">図を正確に描けるだけで解き方が見えることが多い。視覚的に理解できるので直感との相性がよい</td>
+      <td class="demerit-cell">補助線・補助点の発想が必要で、「どこに引くか」が分かるまでに時間がかかる</td></tr>
+  <tr><td class="merit-cell">ベクトルは「方針さえ決まれば機械的に計算できる」分野。得意にすると安定した得点源になる</td>
+      <td class="demerit-cell">空間図形は3次元の把握が難しく、図を正確に描けないと詰まる。正射影ベクトルなど概念が難解</td></tr>
+  <tr><td class="merit-cell">三角比（正弦定理・余弦定理）は暗記型で得点しやすい。共通テストでの出題比重が高い</td>
+      <td class="demerit-cell">座標幾何は計算量が多くなりがち。綺麗な数値が出ない問題は計算ミスのリスクが高い</td></tr>
+</table>
+
+<h3 style="color:var(--calc)">∫ 解析</h3>
+<table class="merit-table">
+  <tr><th class="th-merit">メリット</th><th class="th-demerit">デメリット・注意点</th></tr>
+  <tr><td class="merit-cell">理系入試で配点が最も高い分野。微積を得意にすると入試で圧倒的有利になる</td>
+      <td class="demerit-cell">計算量が膨大。積分計算でのミス（符号・定数）が多く、時間を奪われやすい</td></tr>
+  <tr><td class="merit-cell">増減表・グラフの概形など、視覚的な確認手段が豊富で自己チェックしやすい</td>
+      <td class="demerit-cell">「何を微分・積分するか」の方針判断が難しい問題がある。置換積分・部分積分の使い分けが課題</td></tr>
+  <tr><td class="merit-cell">関数の最大・最小は微分の典型パターンで、翻訳が明確。練習すれば安定して解けるようになる</td>
+      <td class="demerit-cell">絶対値を含む積分・面積計算は場合分けが多く、吟味（⑦）を怠ると符号ミスで全滅する</td></tr>
+</table>
+
+<h3 style="color:var(--stat)">📊 統計・確率</h3>
+<table class="merit-table">
+  <tr><th class="th-merit">メリット</th><th class="th-demerit">デメリット・注意点</th></tr>
+  <tr><td class="merit-cell">共通テストの「統計」分野は近年配点増加中。早めに対策するとコスパがよい</td>
+      <td class="demerit-cell">「同様に確からしい」の確認を怠ると根本的に間違える。前提の把握（①把握）が特に重要</td></tr>
+  <tr><td class="merit-cell">確率は問題のパターンが比較的限られる（余事象・条件付き・反復試行など）。型を覚えれば安定する</td>
+      <td class="demerit-cell">条件付き確率（ベイズ）は直感と答えが逆になることが多い。実験（②）で具体例を作ることが必須</td></tr>
+  <tr><td class="merit-cell">期待値・分散は公式を覚えれば機械的に計算できる分野。時間内に確実に得点できる</td>
+      <td class="demerit-cell">「独立な試行」と「従属な試行」の区別を間違えると全滅。前提の吟味（⑦）が特に重要</td></tr>
+</table>
+
+<!-- ===== 主要解法のメリット・デメリット ===== -->
+<h2 id="method-merit">主要解法のメリット・デメリット</h2>
+<p>同じ問題に対して複数の解法が使えることがあります。どの解法を選ぶかは「自分の得意・時間・問題の形式」で判断してください。</p>
+
+<div class="method-grid">
+  <div class="method-card">
+    <div class="mc-header">因数分解</div>
+    <div class="mc-body">
+      <span class="mc-merit">✅ メリット</span>
+      <p>式を簡単な積に変換できれば、解や等式変形が一気に進む。計算量が激減する</p>
+      <span class="mc-demerit">⚠️ デメリット・注意点</span>
+      <p>因数分解できない式に使おうとして時間を消費するリスクがある。できないと判断したら解の公式に切り替える判断力が必要</p>
+    </div>
+  </div>
+  <div class="method-card">
+    <div class="mc-header">微分法（最大・最小）</div>
+    <div class="mc-body">
+      <span class="mc-merit">✅ メリット</span>
+      <p>関数の最大値・最小値を求める最も汎用的な方法。増減表で視覚的に確認でき、ミスに気づきやすい</p>
+      <span class="mc-demerit">⚠️ デメリット・注意点</span>
+      <p>計算量が多い。端点の確認（閉区間での最大・最小）を忘れると失点する</p>
+    </div>
+  </div>
+  <div class="method-card">
+    <div class="mc-header">相加相乗平均の不等式</div>
+    <div class="mc-body">
+      <span class="mc-merit">✅ メリット</span>
+      <p>微分より計算が短い。正の数の和と積が与えられたときの最大・最小に威力を発揮する</p>
+      <span class="mc-demerit">⚠️ デメリット・注意点</span>
+      <p>等号成立条件の確認（⑦吟味）を必ず書く必要がある。忘れると減点。すべての変数が正であることの確認も必須</p>
+    </div>
+  </div>
+  <div class="method-card">
+    <div class="mc-header">ベクトル</div>
+    <div class="mc-body">
+      <span class="mc-merit">✅ メリット</span>
+      <p>空間図形の問題を「座標」を使わずに処理できる。内積を使えば角度・距離を機械的に計算できる</p>
+      <span class="mc-demerit">⚠️ デメリット・注意点</span>
+      <p>基底ベクトルの選び方を間違えると計算が複雑化する。問題によっては座標計算の方が速い場合もある</p>
+    </div>
+  </div>
+  <div class="method-card">
+    <div class="mc-header">座標計算（解析幾何）</div>
+    <div class="mc-body">
+      <span class="mc-merit">✅ メリット</span>
+      <p>直線・円の方程式を使えば、図形の問題を代数的に解ける。補助線の発想が不要になる</p>
+      <span class="mc-demerit">⚠️ デメリット・注意点</span>
+      <p>計算量が膨大になりやすく、文字が複雑になるとミスが増える。シンプルな図形ならベクトルや幾何的手法の方が速い</p>
+    </div>
+  </div>
+  <div class="method-card">
+    <div class="mc-header">数学的帰納法</div>
+    <div class="mc-body">
+      <span class="mc-merit">✅ メリット</span>
+      <p>「すべての自然数について成立する」という命題の証明に最も有効。手順が明確で書きやすい</p>
+      <span class="mc-demerit">⚠️ デメリット・注意点</span>
+      <p>\(n = k\) の仮定から \(n = k+1\) を示す変形が難しい問題がある。帰納法以外の証明（背理法・直接証明）も視野に入れる必要がある</p>
+    </div>
+  </div>
+  <div class="method-card">
+    <div class="mc-header">積分法（面積・体積）</div>
+    <div class="mc-body">
+      <span class="mc-merit">✅ メリット</span>
+      <p>面積・体積計算の唯一の手段。方針が明確で、定積分の計算さえ正確なら確実に得点できる</p>
+      <span class="mc-demerit">⚠️ デメリット・注意点</span>
+      <p>絶対値を含む場合・上下の曲線が入れ替わる場合の場合分けが複雑。計算量が多く時間がかかる</p>
+    </div>
+  </div>
+  <div class="method-card">
+    <div class="mc-header">余事象・条件付き確率</div>
+    <div class="mc-body">
+      <span class="mc-merit">✅ メリット</span>
+      <p>「〜でない確率」は余事象で計算する方が圧倒的に楽。条件付き確率は条件の絞り込みで計算量が減る</p>
+      <span class="mc-demerit">⚠️ デメリット・注意点</span>
+      <p>余事象を選ぶタイミングの判断が必要。「少なくとも1つ」という表現が余事象のサイン</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 翻訳リスト ===== -->
+<h2 id="trans-algebra">翻訳リスト｜代数</h2>
+
+<div class="trans-section algebra">
+<table class="trans-table">
+  <tr><th style="width:32%">問題文のキーワード</th><th style="width:4%"></th><th style="width:30%">使う解法・定理</th><th>補足・注意点</th></tr>
+  <tr><td class="kw">整数 \(n\) が〇〇の倍数</td><td class="arrow">→</td><td class="method">\(n = k\)（整数）とおく</td><td class="note">合同式 \(n \equiv r \pmod{m}\) も有効</td></tr>
+  <tr><td class="kw">互いに素</td><td class="arrow">→</td><td class="method">最大公約数＝1。背理法で矛盾を導く</td><td class="note">\(\gcd(a, b) = 1\) を仮定して利用</td></tr>
+  <tr><td class="kw">自然数 \(n\) について証明せよ</td><td class="arrow">→</td><td class="method">数学的帰納法（\(n = 1\) で確認 → \(k\) で仮定 → \(k+1\) で示す）</td><td class="note">帰納法以外（直接証明・背理法）も視野に</td></tr>
+  <tr><td class="kw">整数解を求めよ</td><td class="arrow">→</td><td class="method">因数分解 or 合同式 or 不定方程式</td><td class="note">\(xy = c\)（積が定数）の形に変形して約数列挙</td></tr>
+  <tr><td class="kw">\(a + b + c\) が最小・最大（正の変数）</td><td class="arrow">→</td><td class="method">相加相乗平均の不等式</td><td class="note">等号成立条件 \(a = b = c\) の確認を忘れずに</td></tr>
+  <tr><td class="kw">数列 \(\{a_n\}\) の一般項を求めよ</td><td class="arrow">→</td><td class="method">漸化式を立てて特性方程式 or 変数変換</td><td class="note">等差型・等比型・\(a_{n+1} = p a_n + q\) 型を識別する</td></tr>
+  <tr><td class="kw">\(\sum\) の計算</td><td class="arrow">→</td><td class="method">公式（等差・等比・\(\sum k\)・\(\sum k^2\)）を適用</td><td class="note">部分分数分解・テレスコーピングも使う</td></tr>
+  <tr><td class="kw">余りが〇〇</td><td class="arrow">→</td><td class="method">合同式 \(a \equiv r \pmod{m}\)</td><td class="note">合同式のままで乗法・加法を適用できる</td></tr>
+  <tr><td class="kw">\(f(a) = 0\)</td><td class="arrow">→</td><td class="method">因数定理：\((x - a)\) で割り切れる</td><td class="note">有理数解を探すには \(\pm\)（定数項の約数）÷（最高次係数の約数）</td></tr>
+  <tr><td class="kw">2つの文字、方程式が2本</td><td class="arrow">→</td><td class="method">連立方程式（代入法 or 加減法）</td><td class="note">対称式の場合は \(s = x+y,\ p = xy\) とおく</td></tr>
+</table>
+</div>
+
+<h2 id="trans-geo">翻訳リスト｜幾何</h2>
+
+<div class="trans-section geo">
+<table class="trans-table">
+  <tr><th style="width:32%">問題文のキーワード</th><th style="width:4%"></th><th style="width:30%">使う解法・定理</th><th>補足・注意点</th></tr>
+  <tr><td class="kw">三角形の面積</td><td class="arrow">→</td><td class="method">\(S = \frac{1}{2}ab\sin C\)、または底辺×高さ÷2</td><td class="note">2辺と挟む角が与えられたら前者一択</td></tr>
+  <tr><td class="kw">2辺と1角（SAS）が与えられている</td><td class="arrow">→</td><td class="method">余弦定理 \(c^2 = a^2 + b^2 - 2ab\cos C\)</td><td class="note">残り1辺を求めてから正弦定理へつなぐ</td></tr>
+  <tr><td class="kw">1辺と2角（ASA）が与えられている</td><td class="arrow">→</td><td class="method">正弦定理 \(\dfrac{a}{\sin A} = 2R\)</td><td class="note">外接円の半径 \(R\) を求める問題にも使う</td></tr>
+  <tr><td class="kw">点が直線上にある</td><td class="arrow">→</td><td class="method">ベクトル：\(\overrightarrow{AP} = t\overrightarrow{AB}\)（\(t\) は実数）</td><td class="note">内分点：\(t \in (0,1)\)、外分点：\(t \notin [0,1]\)</td></tr>
+  <tr><td class="kw">2直線が交わる（交点を求めよ）</td><td class="arrow">→</td><td class="method">ベクトル or 座標：連立方程式を解く</td><td class="note">ベクトルで表現してパラメータ \(s, t\) を比較する</td></tr>
+  <tr><td class="kw">2つのベクトルが垂直</td><td class="arrow">→</td><td class="method">内積 \(\vec{a} \cdot \vec{b} = 0\)</td><td class="note">「垂直」→「内積＝0」は反射的に使えるようにする</td></tr>
+  <tr><td class="kw">2つのベクトルのなす角 \(\theta\)</td><td class="arrow">→</td><td class="method">\(\cos\theta = \dfrac{\vec{a} \cdot \vec{b}}{|\vec{a}||\vec{b}|}\)</td><td class="note">\(\theta \in [0°, 180°]\) に注意。鈍角になる場合もある</td></tr>
+  <tr><td class="kw">点と直線の距離</td><td class="arrow">→</td><td class="method">\(d = \dfrac{|ax_0 + by_0 + c|}{\sqrt{a^2+b^2}}\)</td><td class="note">直線を \(ax + by + c = 0\) の形に変形してから代入</td></tr>
+  <tr><td class="kw">円の接線</td><td class="arrow">→</td><td class="method">接点での半径⊥接線、または判別式\(D = 0\)</td><td class="note">外部の点から引く接線は2本あることに注意</td></tr>
+  <tr><td class="kw">重心・内心・外心・垂心</td><td class="arrow">→</td><td class="method">各点の定義に戻って座標またはベクトルで処理</td><td class="note">重心：\(G = \dfrac{A+B+C}{3}\)（位置ベクトルの平均）</td></tr>
+</table>
+</div>
+
+<h2 id="trans-calc">翻訳リスト｜解析</h2>
+
+<div class="trans-section calc">
+<table class="trans-table">
+  <tr><th style="width:32%">問題文のキーワード</th><th style="width:4%"></th><th style="width:30%">使う解法・定理</th><th>補足・注意点</th></tr>
+  <tr><td class="kw">最大値・最小値を求めよ（関数）</td><td class="arrow">→</td><td class="method">\(f'(x) = 0\) を解いて増減表 → 極値と端点を比較</td><td class="note">閉区間の場合は端点 \(f(a), f(b)\) の比較を忘れない</td></tr>
+  <tr><td class="kw">接線の方程式を求めよ</td><td class="arrow">→</td><td class="method">傾き \(= f'(a)\)、点 \((a, f(a))\) を通る直線</td><td class="note">\(y - f(a) = f'(a)(x - a)\)</td></tr>
+  <tr><td class="kw">単調増加・単調減少</td><td class="arrow">→</td><td class="method">\(f'(x) &gt; 0\)（増加）、\(f'(x) &lt; 0\)（減少）</td><td class="note">区間全体で符号を確認する</td></tr>
+  <tr><td class="kw">変曲点</td><td class="arrow">→</td><td class="method">\(f''(x) = 0\) かつ \(f''\) の符号が変わる点</td><td class="note">\(f''(a) = 0\) だけでは変曲点とは言えない（符号変化が必要）</td></tr>
+  <tr><td class="kw">2曲線の交点の間の面積</td><td class="arrow">→</td><td class="method">\(S = \int_{\alpha}^{\beta} |f(x) - g(x)|\,dx\)</td><td class="note">どちらが上側か確認してから絶対値を外す</td></tr>
+  <tr><td class="kw">体積を求めよ（回転体）</td><td class="arrow">→</td><td class="method">\(V = \pi \int_a^b \{f(x)\}^2\,dx\)</td><td class="note">\(x\) 軸回転か \(y\) 軸回転かを確認する</td></tr>
+  <tr><td class="kw">絶対値を含む積分</td><td class="arrow">→</td><td class="method">絶対値の中身が0になる点で積分区間を分割</td><td class="note">符号の確認（⑦吟味）を怠ると符号が逆になる</td></tr>
+  <tr><td class="kw">実数 \(k\) の範囲（グラフが交わる条件）</td><td class="arrow">→</td><td class="method">交点の個数 → 判別式 \(D \geq 0\) or グラフの位置関係</td><td class="note">3次方程式なら極大値・極小値の符号で個数を判断</td></tr>
+  <tr><td class="kw">等式の証明（関数）</td><td class="arrow">→</td><td class="method">差を取って \(h(x) = f(x) - g(x)\) とおき、\(h(x) \geq 0\) または \(= 0\) を示す</td><td class="note">微分して増減を調べ、最小値が0以上であることを示す</td></tr>
+  <tr><td class="kw">速さ・位置（物理的な設定）</td><td class="arrow">→</td><td class="method">速度 \(= \dfrac{dx}{dt}\)、位置 \(= \int v\,dt\)</td><td class="note">積分定数 \(C\) は初期条件から決定する</td></tr>
+</table>
+</div>
+
+<h2 id="trans-stat">翻訳リスト｜統計・確率</h2>
+
+<div class="trans-section stat">
+<table class="trans-table">
+  <tr><th style="width:32%">問題文のキーワード</th><th style="width:4%"></th><th style="width:30%">使う解法・定理</th><th>補足・注意点</th></tr>
+  <tr><td class="kw">少なくとも1つ〜</td><td class="arrow">→</td><td class="method">余事象：\(P(A) = 1 - P(\overline{A})\)</td><td class="note">「少なくとも1つ」は余事象のサイン。「1つも〜ない確率」を先に計算</td></tr>
+  <tr><td class="kw">AかつBの確率</td><td class="arrow">→</td><td class="method">乗法定理：\(P(A \cap B) = P(A) \cdot P(B|A)\)</td><td class="note">独立なら \(P(A \cap B) = P(A) \cdot P(B)\)</td></tr>
+  <tr><td class="kw">AまたはBの確率</td><td class="arrow">→</td><td class="method">加法定理：\(P(A \cup B) = P(A) + P(B) - P(A \cap B)\)</td><td class="note">排反なら \(P(A \cap B) = 0\) なので引く必要なし</td></tr>
+  <tr><td class="kw">〜が起きたときの〜の確率</td><td class="arrow">→</td><td class="method">条件付き確率：\(P(B|A) = \dfrac{P(A \cap B)}{P(A)}\)</td><td class="note">樹形図を書いてから計算すると分かりやすい</td></tr>
+  <tr><td class="kw">同じ試行を \(n\) 回繰り返す</td><td class="arrow">→</td><td class="method">反復試行：\(P = \binom{n}{k} p^k (1-p)^{n-k}\)</td><td class="note">二項分布 \(B(n, p)\) に従う</td></tr>
+  <tr><td class="kw">期待値を求めよ</td><td class="arrow">→</td><td class="method">\(E(X) = \sum x_i p_i\)（または二項分布なら \(E = np\)）</td><td class="note">確率の表を作ってから計算するのが確実</td></tr>
+  <tr><td class="kw">分散・標準偏差を求めよ</td><td class="arrow">→</td><td class="method">\(V(X) = E(X^2) - \{E(X)\}^2\)</td><td class="note">二項分布なら \(V = np(1-p)\)</td></tr>
+  <tr><td class="kw">\(n\) 個から \(r\) 個選ぶ（順序あり）</td><td class="arrow">→</td><td class="method">順列 \({}_n P_r = \dfrac{n!}{(n-r)!}\)</td><td class="note">順序が関係するかどうかを先に判断する</td></tr>
+  <tr><td class="kw">\(n\) 個から \(r\) 個選ぶ（順序なし）</td><td class="arrow">→</td><td class="method">組合せ \(\binom{n}{r} = \dfrac{n!}{r!(n-r)!}\)</td><td class="note">「選ぶ」「グループ分け」は組合せ。「並べる」「順番をつける」は順列</td></tr>
+  <tr><td class="kw">正規分布・標準化</td><td class="arrow">→</td><td class="method">\(Z = \dfrac{X - \mu}{\sigma}\) で標準正規分布 \(N(0,1)\) に変換</td><td class="note">正規分布表を読む問題では「以上・以下・間」の判断に注意</td></tr>
+</table>
+</div>
+
+<h2 id="trans-cross">翻訳リスト｜分野横断キーワード</h2>
+<p>複数の分野をまたいで使われるキーワードです。これらが出てきたとき、どの分野の道具を使うかを問題全体の文脈から判断してください。</p>
+
+<div class="trans-section cross">
+<table class="trans-table">
+  <tr><th style="width:32%">問題文のキーワード</th><th style="width:4%"></th><th style="width:30%">候補となる解法</th><th>判断のポイント</th></tr>
+  <tr><td class="kw">最大値・最小値</td><td class="arrow">→</td>
+      <td class="method">微分法 / 相加相乗平均 / 二次関数の頂点 / 線形計画法</td>
+      <td class="note">変数が1つ→微分。正の変数の和・積→相加相乗。整数制約→線形計画</td></tr>
+  <tr><td class="kw">2点間の距離</td><td class="arrow">→</td>
+      <td class="method">座標（距離の公式） / ベクトル（大きさ）</td>
+      <td class="note">座標が与えられていれば距離公式。ベクトルで書かれていれば \(|\vec{AB}|\)</td></tr>
+  <tr><td class="kw">〜を \(n\) で割った余り</td><td class="arrow">→</td>
+      <td class="method">合同式 / 数学的帰納法</td>
+      <td class="note">一般の \(n\) について証明するなら帰納法。具体的な \(n\) なら合同式</td></tr>
+  <tr><td class="kw">等式を証明せよ</td><td class="arrow">→</td>
+      <td class="method">変形して一致を示す / 差を取って0を示す / 帰納法</td>
+      <td class="note">「差＝0」は微分で単調性を確認する方法が強力</td></tr>
+  <tr><td class="kw">不等式を証明せよ</td><td class="arrow">→</td>
+      <td class="method">差を取って符号確認 / 相加相乗平均 / 微分で最小値確認</td>
+      <td class="note">差 \(f(x) - g(x)\) を定義して最小値が0以上であることを示す</td></tr>
+  <tr><td class="kw">関数 \(f(x)\) と実数 \(k\) が絡む</td><td class="arrow">→</td>
+      <td class="method">\(k = f(x)\) とグラフの交点の個数で場合分け</td>
+      <td class="note">グラフを描いて視覚的に確認してから（②実験）式を立てる</td></tr>
+  <tr><td class="kw">整数 \(n\) を含む極限・無限</td><td class="arrow">→</td>
+      <td class="method">数列の極限 / はさみうちの原理</td>
+      <td class="note">\(0 &lt; r &lt; 1\) なら \(r^n \to 0\) は即座に使える</td></tr>
+  <tr><td class="kw">条件を満たす点の軌跡</td><td class="arrow">→</td>
+      <td class="method">媒介変数消去 / 条件式から \(y = f(x)\) を導く</td>
+      <td class="note">軌跡の問題は「点が存在する範囲」も吟味（⑦）が必要</td></tr>
+</table>
+</div>
+
+</div>
+</body>
+</html>
