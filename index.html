@@ -139,9 +139,9 @@
     <li><a href="#overview">4分野の全体像</a></li>
     <li><a href="#merit">各分野のメリット・デメリット</a></li>
     <li><a href="#method-merit">主要解法のメリット・デメリット</a></li>
-    <li><a href="#trans-algebra">翻訳リスト｜代数</a></li>
-    <li><a href="#trans-geo">翻訳リスト｜幾何</a></li>
-    <li><a href="#trans-calc">翻訳リスト｜解析</a></li>
+    <li><a href="#trans-algebra">翻訳リスト｜代数（整数・解と係数を含む）</a></li>
+    <li><a href="#trans-geo">翻訳リスト｜幾何（複素数平面を含む）</a></li>
+    <li><a href="#trans-calc">翻訳リスト｜解析（\(k\) の式を含む）</a></li>
     <li><a href="#trans-stat">翻訳リスト｜統計・確率</a></li>
     <li><a href="#trans-cross">翻訳リスト｜分野横断キーワード</a></li>
   </ol>
@@ -320,16 +320,73 @@
 <div class="trans-section algebra">
 <table class="trans-table">
   <tr><th style="width:32%">問題文のキーワード</th><th style="width:4%"></th><th style="width:30%">使う解法・定理</th><th>補足・注意点</th></tr>
-  <tr><td class="kw">整数 \(n\) が〇〇の倍数</td><td class="arrow">→</td><td class="method">\(n = k\)（整数）とおく</td><td class="note">合同式 \(n \equiv r \pmod{m}\) も有効</td></tr>
-  <tr><td class="kw">互いに素</td><td class="arrow">→</td><td class="method">最大公約数＝1。背理法で矛盾を導く</td><td class="note">\(\gcd(a, b) = 1\) を仮定して利用</td></tr>
-  <tr><td class="kw">自然数 \(n\) について証明せよ</td><td class="arrow">→</td><td class="method">数学的帰納法（\(n = 1\) で確認 → \(k\) で仮定 → \(k+1\) で示す）</td><td class="note">帰納法以外（直接証明・背理法）も視野に</td></tr>
-  <tr><td class="kw">整数解を求めよ</td><td class="arrow">→</td><td class="method">因数分解 or 合同式 or 不定方程式</td><td class="note">\(xy = c\)（積が定数）の形に変形して約数列挙</td></tr>
-  <tr><td class="kw">\(a + b + c\) が最小・最大（正の変数）</td><td class="arrow">→</td><td class="method">相加相乗平均の不等式</td><td class="note">等号成立条件 \(a = b = c\) の確認を忘れずに</td></tr>
-  <tr><td class="kw">数列 \(\{a_n\}\) の一般項を求めよ</td><td class="arrow">→</td><td class="method">漸化式を立てて特性方程式 or 変数変換</td><td class="note">等差型・等比型・\(a_{n+1} = p a_n + q\) 型を識別する</td></tr>
+
+  <tr><td class="kw" colspan="4" style="background:var(--algebra);color:#fff;font-size:0.8em;letter-spacing:0.06em;padding:0.4em 0.8em;">▶ 式・方程式・不等式</td></tr>
+  <tr><td class="kw">\(f(a) = 0\)</td><td class="arrow">→</td><td class="method">因数定理：\((x-a)\) で割り切れる</td><td class="note">有理数解候補：\(\pm\)（定数項の約数）\(\div\)（最高次係数の約数）</td></tr>
+  <tr><td class="kw">2つの文字、方程式が2本</td><td class="arrow">→</td><td class="method">連立方程式（代入法 or 加減法）</td><td class="note">対称式の場合は \(s=x+y,\ p=xy\) とおく</td></tr>
+  <tr><td class="kw">\(a+b+c\) が最小・最大（正の変数）</td><td class="arrow">→</td><td class="method">相加相乗平均の不等式</td><td class="note">等号成立条件 \(a=b=c\) の確認を忘れずに</td></tr>
+
+  <tr><td class="kw" colspan="4" style="background:var(--algebra);color:#fff;font-size:0.8em;letter-spacing:0.06em;padding:0.4em 0.8em;">▶ 数列</td></tr>
+  <tr><td class="kw">数列 \(\{a_n\}\) の一般項を求めよ</td><td class="arrow">→</td><td class="method">漸化式を立てて特性方程式 or 変数変換</td><td class="note">等差型・等比型・\(a_{n+1}=pa_n+q\) 型を識別する</td></tr>
+  <tr><td class="kw">漸化式 \(a_{n+1} = a_n + d\)（差が一定）</td><td class="arrow">→</td>
+      <td class="method">等差数列：\(a_n = a_1 + (n-1)d\)</td>
+      <td class="note">「隣との差が定数」が見えたら即等差。\(a_{n+1}-a_n=d\) の形に整理して確認</td></tr>
+  <tr><td class="kw">漸化式 \(a_{n+1} = r \cdot a_n\)（比が一定）</td><td class="arrow">→</td>
+      <td class="method">等比数列：\(a_n = a_1 \cdot r^{n-1}\)</td>
+      <td class="note">「隣との比が定数」が見えたら即等比。\(a_{n+1}/a_n=r\) の形に整理して確認</td></tr>
+  <tr><td class="kw">漸化式 \(a_{n+1} = a_n + f(n)\)（差が \(n\) の関数）</td><td class="arrow">→</td>
+      <td class="method">階差数列：\(a_n = a_1 + \sum_{k=1}^{n-1} f(k)\)（\(n \geq 2\)）</td>
+      <td class="note">\(b_n = a_{n+1} - a_n = f(n)\) とおいて \(\sum b_k\) を計算。\(n=1\) の確認を忘れない</td></tr>
+  <tr><td class="kw">漸化式 \(a_{n+1} = p a_n + q\)（\(p\neq 1,\ q\neq 0\)）</td><td class="arrow">→</td>
+      <td class="method">特性方程式 \(\alpha = p\alpha + q\) を解く → \(a_{n+1}-\alpha = p(a_n-\alpha)\) に変形 → 等比数列へ帰着</td>
+      <td class="note">「定数をずらして等比にする」が基本戦略。\(\alpha\) を求めて \(b_n = a_n - \alpha\) とおく</td></tr>
+  <tr><td class="kw">漸化式 \(a_{n+1} = p a_n + f(n)\)（右辺に \(n\) の関数）</td><td class="arrow">→</td>
+      <td class="method">両辺を \(p^{n+1}\) で割る（または \(b_n = a_n / p^n\) とおく）→ 階差型に帰着</td>
+      <td class="note">変数変換後の \(b_{n+1} - b_n\) が \(n\) の関数になれば階差で解ける</td></tr>
+  <tr><td class="kw">漸化式 \(a_{n+2} = p a_{n+1} + q a_n\)（3項間）</td><td class="arrow">→</td>
+      <td class="method">特性方程式 \(x^2 = px + q\) の2解を \(\alpha,\beta\) とする → \(a_{n+1}-\alpha a_n\) が等比に帰着</td>
+      <td class="note">\(\alpha=\beta\) の重解の場合は \(b_n = a_n/\alpha^n\) とおいて等差型に帰着</td></tr>
+  <tr><td class="kw">漸化式 \(a_{n+1} = \dfrac{pa_n + q}{ra_n + s}\)（分数型）</td><td class="arrow">→</td>
+      <td class="method">\(b_n = 1/a_n\) または \(b_n = (a_n - \alpha)/(a_n - \beta)\) とおいて等比型に帰着</td>
+      <td class="note">「逆数をとる」「分離変数」が突破口。変換後に等比の形になるか確認する</td></tr>
   <tr><td class="kw">\(\sum\) の計算</td><td class="arrow">→</td><td class="method">公式（等差・等比・\(\sum k\)・\(\sum k^2\)）を適用</td><td class="note">部分分数分解・テレスコーピングも使う</td></tr>
-  <tr><td class="kw">余りが〇〇</td><td class="arrow">→</td><td class="method">合同式 \(a \equiv r \pmod{m}\)</td><td class="note">合同式のままで乗法・加法を適用できる</td></tr>
-  <tr><td class="kw">\(f(a) = 0\)</td><td class="arrow">→</td><td class="method">因数定理：\((x - a)\) で割り切れる</td><td class="note">有理数解を探すには \(\pm\)（定数項の約数）÷（最高次係数の約数）</td></tr>
-  <tr><td class="kw">2つの文字、方程式が2本</td><td class="arrow">→</td><td class="method">連立方程式（代入法 or 加減法）</td><td class="note">対称式の場合は \(s = x+y,\ p = xy\) とおく</td></tr>
+  <tr><td class="kw">\(\dfrac{1}{k(k+1)}\) や \(\dfrac{1}{(2k-1)(2k+1)}\) の和</td><td class="arrow">→</td>
+      <td class="method">部分分数分解：\(\dfrac{1}{k(k+1)} = \dfrac{1}{k} - \dfrac{1}{k+1}\) に分解 → テレスコーピング（隣の項が消える）</td>
+      <td class="note">分解後に \(\sum\) を書き出すと「ほとんどが消えて端だけ残る」のが見える。消えずに残る項（最初と最後）だけ拾う</td></tr>
+  <tr><td class="kw">\(k \cdot r^k\)（等差×等比）の和</td><td class="arrow">→</td>
+      <td class="method">「ずらして引く」：\(S = \sum k r^k\) とおき、\(rS\) を作って \(S - rS\) を計算 → 等比数列の和に帰着</td>
+      <td class="note">\(S - rS = (1-r)S\) の左辺は等比数列の和になる。\(r=1\) の場合は別途確認</td></tr>
+  <tr><td class="kw">等比数列の和 \(\sum r^k\) が途中で見える</td><td class="arrow">→</td>
+      <td class="method">等比数列の和：\(\displaystyle\sum_{k=0}^{n} r^k = \dfrac{1-r^{n+1}}{1-r}\)（\(r\neq 1\)）</td>
+      <td class="note">分母に \((1-r)\) が出てきたら「等比の和の公式が使える」サイン。\(r=1\) は場合分けして \(n+1\) を代入</td></tr>
+  <tr><td class="kw">群数列（数列をグループに分けて考える）</td><td class="arrow">→</td>
+      <td class="method">① 第 \(n\) 群の末項番号を求める → ② 求めたい項が「第何群の第何項か」を特定する → ③ その項の値を一般式で表す</td>
+      <td class="note">「第 \(n\) 群までの項数の総和」が末項番号になる。不等式 \(S_{n-1} < k \leq S_n\) で群を特定する</td></tr>
+  <tr><td class="kw">すべての自然数 \(n\) について証明せよ</td><td class="arrow">→</td><td class="method">数学的帰納法（\(n=1\) 確認 → \(n=k\) 仮定 → \(n=k+1\) を示す）</td><td class="note">帰納法以外（直接証明・背理法）も視野に</td></tr>
+
+  <tr><td class="kw" colspan="4" style="background:var(--algebra);color:#fff;font-size:0.8em;letter-spacing:0.06em;padding:0.4em 0.8em;">▶ 整数・余り・倍数</td></tr>
+  <tr><td class="kw">余りが〇〇 / 〇〇の倍数を示せ</td><td class="arrow">→</td><td class="method">合同式 \(a \equiv r \pmod{m}\)。周期性（べき乗の余りが繰り返す）に注目</td><td class="note">\(-1 \equiv m-1 \pmod{m}\) を使うと計算が楽になる場面が多い</td></tr>
+  <tr><td class="kw">約数・倍数が絡む</td><td class="arrow">→</td><td class="method">素因数分解 \(n=p^\alpha q^\beta\cdots\) → 約数の個数：\((\alpha+1)(\beta+1)\cdots\)</td><td class="note">約数問題は必ず素因数分解からスタート。大きい数はユークリッドの互除法</td></tr>
+  <tr><td class="kw">整数 \(n\) が〇〇の倍数</td><td class="arrow">→</td><td class="method">\(n=k\)（整数）とおく / 合同式 / 連続整数の積を作る</td><td class="note">連続する \(n\) 個の整数の積は \(n!\) の倍数。連続3整数の積は6の倍数</td></tr>
+  <tr><td class="kw">互いに素という条件</td><td class="arrow">→</td><td class="method">\(\gcd(a,b)=1\) に翻訳 → 背理法で「両方が素数 \(p\) の倍数」という矛盾</td><td class="note">\(\sqrt{2}\) が無理数の証明など、有理数・無理数の証明も同じ構造</td></tr>
+  <tr><td class="kw">最大公約数・最小公倍数（大きい数）</td><td class="arrow">→</td><td class="method">ユークリッドの互除法：\(\gcd(a,b)=\gcd(b,\ a \bmod b)\)</td><td class="note">\(\gcd(a,b)\cdot\text{lcm}(a,b)=a\cdot b\) と組み合わせる</td></tr>
+  <tr><td class="kw">整数解の組を求めよ（不定方程式）</td><td class="arrow">→</td><td class="method">積の形 \((x-a)(y-b)=c\) に変形 → \(c\) の約数を列挙して振り分け</td><td class="note">変形できない場合は特殊解を1つ探してユークリッドの互除法で一般解を作る</td></tr>
+  <tr><td class="kw">素数 \(p\) が登場する</td><td class="arrow">→</td><td class="method">積の形に分解 → 一方が必ず \(1\) に限定される。十分性の確認も必須</td><td class="note">「素数＝1と自分自身しか約数を持たない」を積の分解で使う</td></tr>
+  <tr><td class="kw">平方数 \(n^2\) が絡む証明・非存在</td><td class="arrow">→</td><td class="method">\(n^2 \bmod 3 \in \{0,1\}\)、\(n^2 \bmod 4 \in \{0,1\}\) という余りの制限を利用</td><td class="note">「このような余りにはなれない」と非存在を示す。モッド3・4・8で平方数の余りが限定される</td></tr>
+  <tr><td class="kw">存在を証明したい（鳩ノ巣原理）</td><td class="arrow">→</td><td class="method">余りで部屋を設計 → \(m+1\) 個の整数を \(\bmod m\) の \(m\) 部屋に入れれば必ず重複</td><td class="note">「どんな選び方でも存在する」の証明。部屋の設計が腕の見せどころ</td></tr>
+  <tr><td class="kw">ガウス記号 \(\lfloor x \rfloor\)</td><td class="arrow">→</td><td class="method">\(\lfloor x \rfloor = n \Leftrightarrow n \leq x < n+1\) に翻訳</td><td class="note">階乗に含まれる素数 \(p\) の個数：\(\sum_{k \geq 1} \lfloor N/p^k \rfloor\)</td></tr>
+
+  <tr><td class="kw" colspan="4" style="background:var(--algebra);color:#fff;font-size:0.8em;letter-spacing:0.06em;padding:0.4em 0.8em;">▶ 解と係数の関係</td></tr>
+  <tr><td class="kw">2次方程式の2解 \(\alpha,\beta\) の和・積・差</td><td class="arrow">→</td><td class="method">\(\alpha+\beta=-b/a\)、\(\alpha\beta=c/a\)、\(|\alpha-\beta|^2=(\alpha+\beta)^2-4\alpha\beta\)</td><td class="note">解を直接求めず、和・積だけで答えられる問題が多い。対称式は和・積に帰着</td></tr>
+  <tr><td class="kw">直線（または \(x\) 軸）が切り取る弦の長さ</td><td class="arrow">→</td>
+      <td class="method">交点の2 \(x\) 座標を \(\alpha,\beta\) とおく → \(|\beta-\alpha|^2=(\alpha+\beta)^2-4\alpha\beta\) に代入</td>
+      <td class="note">解そのものを求めなくていい。和・積を係数からすぐ読み取れるので圧倒的に速い。「解を求めてから引く」と思い込んでいる人が多いが、\(\beta-\alpha\) が出てきた瞬間に解と係数の関係を使うサイン</td></tr>
+  <tr><td class="kw">3次方程式の3解 \(\alpha,\beta,\gamma\)</td><td class="arrow">→</td><td class="method">\(\alpha+\beta+\gamma=-b/a\)、\(\alpha\beta+\beta\gamma+\gamma\alpha=c/a\)、\(\alpha\beta\gamma=-d/a\)</td><td class="note">1解が分かれば残りは2次方程式に帰着できる</td></tr>
+  <tr><td class="kw">「2解がともに整数」</td><td class="arrow">→</td><td class="method">和・積が整数 → 大きい方を設定して範囲を絞る → 積の約数を列挙</td><td class="note">判別式より解と係数の関係から列挙する方が速い場面が多い</td></tr>
+  <tr><td class="kw">「2解の符号が逆」（異符号の解）</td><td class="arrow">→</td><td class="method">積 \(\alpha\beta < 0\) → \(c/a < 0\) に翻訳</td><td class="note">判別式を使わなくても符号条件だけで絞れる</td></tr>
+  <tr><td class="kw">2解を新しい解とする方程式を作れ</td><td class="arrow">→</td><td class="method">新しい解の和・積を計算 → \(t^2-(\text{和})t+(\text{積})=0\) に代入</td><td class="note">例：新しい解が \(\alpha^2,\beta^2\) なら \(\alpha^2+\beta^2=(\alpha+\beta)^2-2\alpha\beta\) で計算</td></tr>
+  <tr><td class="kw">対称式 \(\alpha^2+\beta^2\)、\(\alpha^3+\beta^3\) などを求めよ</td><td class="arrow">→</td><td class="method">基本対称式（和・積）に帰着：\(\alpha^2+\beta^2=(\alpha+\beta)^2-2\alpha\beta\)</td><td class="note">すべての対称式は「和」と「積」の式で表せる（対称式の基本定理）</td></tr>
+  <tr><td class="kw">複素数解を持つ（係数が実数の方程式）</td><td class="arrow">→</td><td class="method">虚数解は共役ペア → 和が \(2\,\text{Re}(\alpha)\)、積が \(|\alpha|^2\)（ともに実数）</td><td class="note">解と係数の関係で実部・虚部を係数から特定する</td></tr>
 </table>
 </div>
 
@@ -338,16 +395,29 @@
 <div class="trans-section geo">
 <table class="trans-table">
   <tr><th style="width:32%">問題文のキーワード</th><th style="width:4%"></th><th style="width:30%">使う解法・定理</th><th>補足・注意点</th></tr>
-  <tr><td class="kw">三角形の面積</td><td class="arrow">→</td><td class="method">\(S = \frac{1}{2}ab\sin C\)、または底辺×高さ÷2</td><td class="note">2辺と挟む角が与えられたら前者一択</td></tr>
-  <tr><td class="kw">2辺と1角（SAS）が与えられている</td><td class="arrow">→</td><td class="method">余弦定理 \(c^2 = a^2 + b^2 - 2ab\cos C\)</td><td class="note">残り1辺を求めてから正弦定理へつなぐ</td></tr>
-  <tr><td class="kw">1辺と2角（ASA）が与えられている</td><td class="arrow">→</td><td class="method">正弦定理 \(\dfrac{a}{\sin A} = 2R\)</td><td class="note">外接円の半径 \(R\) を求める問題にも使う</td></tr>
-  <tr><td class="kw">点が直線上にある</td><td class="arrow">→</td><td class="method">ベクトル：\(\overrightarrow{AP} = t\overrightarrow{AB}\)（\(t\) は実数）</td><td class="note">内分点：\(t \in (0,1)\)、外分点：\(t \notin [0,1]\)</td></tr>
-  <tr><td class="kw">2直線が交わる（交点を求めよ）</td><td class="arrow">→</td><td class="method">ベクトル or 座標：連立方程式を解く</td><td class="note">ベクトルで表現してパラメータ \(s, t\) を比較する</td></tr>
-  <tr><td class="kw">2つのベクトルが垂直</td><td class="arrow">→</td><td class="method">内積 \(\vec{a} \cdot \vec{b} = 0\)</td><td class="note">「垂直」→「内積＝0」は反射的に使えるようにする</td></tr>
-  <tr><td class="kw">2つのベクトルのなす角 \(\theta\)</td><td class="arrow">→</td><td class="method">\(\cos\theta = \dfrac{\vec{a} \cdot \vec{b}}{|\vec{a}||\vec{b}|}\)</td><td class="note">\(\theta \in [0°, 180°]\) に注意。鈍角になる場合もある</td></tr>
-  <tr><td class="kw">点と直線の距離</td><td class="arrow">→</td><td class="method">\(d = \dfrac{|ax_0 + by_0 + c|}{\sqrt{a^2+b^2}}\)</td><td class="note">直線を \(ax + by + c = 0\) の形に変形してから代入</td></tr>
-  <tr><td class="kw">円の接線</td><td class="arrow">→</td><td class="method">接点での半径⊥接線、または判別式\(D = 0\)</td><td class="note">外部の点から引く接線は2本あることに注意</td></tr>
-  <tr><td class="kw">重心・内心・外心・垂心</td><td class="arrow">→</td><td class="method">各点の定義に戻って座標またはベクトルで処理</td><td class="note">重心：\(G = \dfrac{A+B+C}{3}\)（位置ベクトルの平均）</td></tr>
+
+  <tr><td class="kw" colspan="4" style="background:var(--geo);color:#fff;font-size:0.8em;letter-spacing:0.06em;padding:0.4em 0.8em;">▶ 三角比・三角形</td></tr>
+  <tr><td class="kw">三角形の面積</td><td class="arrow">→</td><td class="method">\(S=\frac{1}{2}ab\sin C\)、または底辺×高さ÷2</td><td class="note">2辺と挟む角が与えられたら前者一択</td></tr>
+  <tr><td class="kw">2辺と1角（SAS）が与えられている</td><td class="arrow">→</td><td class="method">余弦定理 \(c^2=a^2+b^2-2ab\cos C\)</td><td class="note">残り1辺を求めてから正弦定理へつなぐ</td></tr>
+  <tr><td class="kw">1辺と2角（ASA）が与えられている</td><td class="arrow">→</td><td class="method">正弦定理 \(\dfrac{a}{\sin A}=2R\)</td><td class="note">外接円の半径 \(R\) を求める問題にも使う</td></tr>
+
+  <tr><td class="kw" colspan="4" style="background:var(--geo);color:#fff;font-size:0.8em;letter-spacing:0.06em;padding:0.4em 0.8em;">▶ ベクトル・座標</td></tr>
+  <tr><td class="kw">点が直線上にある</td><td class="arrow">→</td><td class="method">ベクトル：\(\overrightarrow{AP}=t\overrightarrow{AB}\)（\(t\) は実数）</td><td class="note">内分点：\(t \in (0,1)\)、外分点：\(t \notin [0,1]\)</td></tr>
+  <tr><td class="kw">2直線が交わる（交点を求めよ）</td><td class="arrow">→</td><td class="method">ベクトル or 座標：連立方程式を解く</td><td class="note">ベクトルでパラメータ \(s,t\) を比較する</td></tr>
+  <tr><td class="kw">2つのベクトルが垂直</td><td class="arrow">→</td><td class="method">内積 \(\vec{a}\cdot\vec{b}=0\)</td><td class="note">「垂直」→「内積＝0」は反射的に使えるようにする</td></tr>
+  <tr><td class="kw">2つのベクトルのなす角 \(\theta\)</td><td class="arrow">→</td><td class="method">\(\cos\theta=\dfrac{\vec{a}\cdot\vec{b}}{|\vec{a}||\vec{b}|}\)</td><td class="note">\(\theta \in [0°,180°]\) に注意。鈍角になる場合もある</td></tr>
+  <tr><td class="kw">点と直線の距離</td><td class="arrow">→</td><td class="method">\(d=\dfrac{|ax_0+by_0+c|}{\sqrt{a^2+b^2}}\)</td><td class="note">直線を \(ax+by+c=0\) の形に変形してから代入</td></tr>
+  <tr><td class="kw">円の接線</td><td class="arrow">→</td><td class="method">接点での半径⊥接線、または判別式 \(D=0\)</td><td class="note">外部の点から引く接線は2本あることに注意</td></tr>
+  <tr><td class="kw">重心・内心・外心・垂心</td><td class="arrow">→</td><td class="method">各点の定義に戻って座標またはベクトルで処理</td><td class="note">重心：\(G=\dfrac{A+B+C}{3}\)（位置ベクトルの平均）</td></tr>
+
+  <tr><td class="kw" colspan="4" style="background:var(--geo);color:#fff;font-size:0.8em;letter-spacing:0.06em;padding:0.4em 0.8em;">▶ 複素数平面</td></tr>
+  <tr><td class="kw">複素数 \(z\) が実数 / 純虚数</td><td class="arrow">→</td><td class="method">実数 \(\Leftrightarrow z=\bar{z}\)。純虚数 \(\Leftrightarrow z=-\bar{z}\)（かつ \(z\neq 0\)）</td><td class="note">\(z=a+bi\) とおいて虚部 \(b=0\)（実数）または実部 \(a=0\)（純虚数）に翻訳</td></tr>
+  <tr><td class="kw">分母に複素数がある / \(|z|\) を実数化したい</td><td class="arrow">→</td><td class="method">共役 \(\bar{z}\) を掛けて実数化：\(z\bar{z}=|z|^2\)</td><td class="note">\(z+\bar{z}=2\,\text{Re}(z)\)、\(z-\bar{z}=2i\,\text{Im}(z)\) もセットで覚える</td></tr>
+  <tr><td class="kw">\(|z-\alpha|=r\)（複素数の軌跡）</td><td class="arrow">→</td><td class="method">中心 \(\alpha\)、半径 \(r\) の円に翻訳 → \(|z|^2=z\bar{z}=a^2+b^2\) で実数の方程式へ</td><td class="note">絶対値の条件は「平面上の距離」と読み替える。ベクトルの距離と同じ構造</td></tr>
+  <tr><td class="kw">\(z^n\) を求めよ（複素数のべき乗）</td><td class="arrow">→</td><td class="method">極形式 \(z=r(\cos\theta+i\sin\theta)\) に変換 → ド・モアブルの定理</td><td class="note">\(z=1+i\) なら \(|z|=\sqrt{2}\)、\(\arg z=\pi/4\) → \(z^n=(\sqrt{2})^n(\cos\frac{n\pi}{4}+i\sin\frac{n\pi}{4})\)</td></tr>
+  <tr><td class="kw">回転・拡大縮小（図形の変換）</td><td class="arrow">→</td><td class="method">\(w=\alpha z\)：\(|\alpha|\) 倍拡大 \(+\) \(\arg\alpha\) 回転。角度 \(\theta\) のみ → \(e^{i\theta}\) を掛ける</td><td class="note">平行移動は加算（\(w=z+\beta\)）。回転・拡大は乗算。使い分けを確認</td></tr>
+  <tr><td class="kw">3点が一直線上 / 正三角形をなす</td><td class="arrow">→</td><td class="method">一直線：\(\dfrac{z_3-z_1}{z_2-z_1}\) が実数。正三角形：その比が \(\dfrac{1\pm\sqrt{3}i}{2}\)</td><td class="note">比が実数 ↔ 偏角が \(0\) または \(\pi\)（同方向・逆方向）</td></tr>
+  <tr><td class="kw">\(z^n=1\)（1の \(n\) 乗根）</td><td class="arrow">→</td><td class="method">極形式で \(r=1\)、\(\theta=\frac{2k\pi}{n}\)（\(k=0,1,\ldots,n-1\)）を列挙</td><td class="note">1の原始 \(n\) 乗根 \(\omega\) に対して \(1+\omega+\omega^2+\cdots+\omega^{n-1}=0\)</td></tr>
 </table>
 </div>
 
@@ -356,16 +426,28 @@
 <div class="trans-section calc">
 <table class="trans-table">
   <tr><th style="width:32%">問題文のキーワード</th><th style="width:4%"></th><th style="width:30%">使う解法・定理</th><th>補足・注意点</th></tr>
-  <tr><td class="kw">最大値・最小値を求めよ（関数）</td><td class="arrow">→</td><td class="method">\(f'(x) = 0\) を解いて増減表 → 極値と端点を比較</td><td class="note">閉区間の場合は端点 \(f(a), f(b)\) の比較を忘れない</td></tr>
-  <tr><td class="kw">接線の方程式を求めよ</td><td class="arrow">→</td><td class="method">傾き \(= f'(a)\)、点 \((a, f(a))\) を通る直線</td><td class="note">\(y - f(a) = f'(a)(x - a)\)</td></tr>
-  <tr><td class="kw">単調増加・単調減少</td><td class="arrow">→</td><td class="method">\(f'(x) &gt; 0\)（増加）、\(f'(x) &lt; 0\)（減少）</td><td class="note">区間全体で符号を確認する</td></tr>
-  <tr><td class="kw">変曲点</td><td class="arrow">→</td><td class="method">\(f''(x) = 0\) かつ \(f''\) の符号が変わる点</td><td class="note">\(f''(a) = 0\) だけでは変曲点とは言えない（符号変化が必要）</td></tr>
-  <tr><td class="kw">2曲線の交点の間の面積</td><td class="arrow">→</td><td class="method">\(S = \int_{\alpha}^{\beta} |f(x) - g(x)|\,dx\)</td><td class="note">どちらが上側か確認してから絶対値を外す</td></tr>
-  <tr><td class="kw">体積を求めよ（回転体）</td><td class="arrow">→</td><td class="method">\(V = \pi \int_a^b \{f(x)\}^2\,dx\)</td><td class="note">\(x\) 軸回転か \(y\) 軸回転かを確認する</td></tr>
+
+  <tr><td class="kw" colspan="4" style="background:var(--calc);color:#fff;font-size:0.8em;letter-spacing:0.06em;padding:0.4em 0.8em;">▶ 微分</td></tr>
+  <tr><td class="kw">最大値・最小値を求めよ（関数）</td><td class="arrow">→</td><td class="method">\(f'(x)=0\) を解いて増減表 → 極値と端点を比較</td><td class="note">閉区間の場合は端点 \(f(a),f(b)\) の比較を忘れない</td></tr>
+  <tr><td class="kw">接線の方程式を求めよ</td><td class="arrow">→</td><td class="method">傾き \(=f'(a)\)、点 \((a,f(a))\) を通る直線：\(y-f(a)=f'(a)(x-a)\)</td><td class="note">外部の点から接線を引く場合は接点を \((t,f(t))\) とおいて傾きを比較</td></tr>
+  <tr><td class="kw">単調増加・単調減少</td><td class="arrow">→</td><td class="method">\(f'(x)>0\)（増加）、\(f'(x)<0\)（減少）</td><td class="note">区間全体で符号を確認する</td></tr>
+  <tr><td class="kw">変曲点</td><td class="arrow">→</td><td class="method">\(f''(x)=0\) かつ \(f''\) の符号が変わる点</td><td class="note">\(f''(a)=0\) だけでは変曲点とは言えない（符号変化が必要）</td></tr>
+  <tr><td class="kw">等式の証明（関数）</td><td class="arrow">→</td><td class="method">差を取って \(h(x)=f(x)-g(x)\) とおき、\(h(x)\geq 0\) または \(=0\) を示す</td><td class="note">微分して増減を調べ、最小値が0以上であることを示す</td></tr>
+  <tr><td class="kw">速さ・位置（物理的な設定）</td><td class="arrow">→</td><td class="method">速度 \(=\dfrac{dx}{dt}\)、位置 \(=\int v\,dt\)</td><td class="note">積分定数 \(C\) は初期条件から決定する</td></tr>
+
+  <tr><td class="kw" colspan="4" style="background:var(--calc);color:#fff;font-size:0.8em;letter-spacing:0.06em;padding:0.4em 0.8em;">▶ 積分・面積・体積</td></tr>
+  <tr><td class="kw">2曲線の交点の間の面積</td><td class="arrow">→</td><td class="method">\(S=\int_\alpha^\beta |f(x)-g(x)|\,dx\)</td><td class="note">どちらが上側か確認してから絶対値を外す</td></tr>
+  <tr><td class="kw">体積を求めよ（回転体）</td><td class="arrow">→</td><td class="method">\(V=\pi\int_a^b \{f(x)\}^2\,dx\)</td><td class="note">\(x\) 軸回転か \(y\) 軸回転かを確認する</td></tr>
   <tr><td class="kw">絶対値を含む積分</td><td class="arrow">→</td><td class="method">絶対値の中身が0になる点で積分区間を分割</td><td class="note">符号の確認（⑦吟味）を怠ると符号が逆になる</td></tr>
-  <tr><td class="kw">実数 \(k\) の範囲（グラフが交わる条件）</td><td class="arrow">→</td><td class="method">交点の個数 → 判別式 \(D \geq 0\) or グラフの位置関係</td><td class="note">3次方程式なら極大値・極小値の符号で個数を判断</td></tr>
-  <tr><td class="kw">等式の証明（関数）</td><td class="arrow">→</td><td class="method">差を取って \(h(x) = f(x) - g(x)\) とおき、\(h(x) \geq 0\) または \(= 0\) を示す</td><td class="note">微分して増減を調べ、最小値が0以上であることを示す</td></tr>
-  <tr><td class="kw">速さ・位置（物理的な設定）</td><td class="arrow">→</td><td class="method">速度 \(= \dfrac{dx}{dt}\)、位置 \(= \int v\,dt\)</td><td class="note">積分定数 \(C\) は初期条件から決定する</td></tr>
+
+  <tr><td class="kw" colspan="4" style="background:var(--calc);color:#fff;font-size:0.8em;letter-spacing:0.06em;padding:0.4em 0.8em;">▶ \(k\) の式（パラメータ・共有点・通過）</td></tr>
+  <tr><td class="kw">\(k\) の値によらず常に通る点を求めよ</td><td class="arrow">→</td><td class="method">式を \(k\) で整理 → \(k\) の係数\(=0\) かつ定数項\(=0\) の連立方程式を解く</td><td class="note">例：\(y=kx+(k+2)\) → \(k(x+1)+(2-y)=0\) → \(x=-1,y=2\)</td></tr>
+  <tr><td class="kw">2曲線の共有点の個数（\(k\) が変化）</td><td class="arrow">→</td><td class="method">連立して \(k\) を消去 → 残った方程式の判別式 \(D\) の符号で個数判断</td><td class="note">\(D>0\)：2点、\(D=0\)：接する、\(D<0\)：交わらない</td></tr>
+  <tr><td class="kw">直線が曲線に接する条件（\(k\) を含む直線）</td><td class="arrow">→</td><td class="method">連立方程式が重解を持つ → 判別式 \(D=0\) に翻訳</td><td class="note">接する ↔ 共有点がちょうど1つ（重解）。十分性の確認も必要</td></tr>
+  <tr><td class="kw">すべての実数 \(k\) に対して〇〇が成立</td><td class="arrow">→</td><td class="method">\(k\) の2次式が恒等的に \(\geq 0\) → 最高次係数 \(>0\) かつ判別式 \(D\leq 0\)</td><td class="note">\(ak^2+bk+c\geq 0\) がすべての \(k\) で成立 ↔ \(a>0\) かつ \(b^2-4ac\leq 0\)</td></tr>
+  <tr><td class="kw">点 \((x,y)\) が「ある \(k\) が存在して〇〇を満たす」</td><td class="arrow">→</td><td class="method">\(k\) の方程式が実数解を持つ条件 → 判別式 \(D\geq 0\) に翻訳</td><td class="note">「\(k\) が存在する」↔「\(k\) の方程式が実数解を持つ」。軌跡問題の標準手法</td></tr>
+  <tr><td class="kw">パラメータ \(k\) を含む放物線の頂点の軌跡</td><td class="arrow">→</td><td class="method">頂点座標を \(k\) で表す（\(X=f(k),Y=g(k)\)）→ \(k\) を消去して軌跡の式</td><td class="note">消去できない場合は \(k\) の存在条件（\(D\geq 0\)）に帰着</td></tr>
+  <tr><td class="kw">\(k\) を含む接線族の包絡線</td><td class="arrow">→</td><td class="method">\(F(x,y,k)=0\) を \(k\) で偏微分 → \(\partial F/\partial k=0\) と連立して \(k\) を消去</td><td class="note">包絡線は各曲線に接する曲線。難関大の接線族の問題で頻出</td></tr>
 </table>
 </div>
 
@@ -388,35 +470,29 @@
 </div>
 
 <h2 id="trans-cross">翻訳リスト｜分野横断キーワード</h2>
-<p>複数の分野をまたいで使われるキーワードです。これらが出てきたとき、どの分野の道具を使うかを問題全体の文脈から判断してください。</p>
+<p>複数の分野の道具を組み合わせるか、問題の文脈によって使う分野が変わるキーワードです。どの分野で解くかの判断軸を確認してください。</p>
 
 <div class="trans-section cross">
 <table class="trans-table">
   <tr><th style="width:32%">問題文のキーワード</th><th style="width:4%"></th><th style="width:30%">候補となる解法</th><th>判断のポイント</th></tr>
-  <tr><td class="kw">最大値・最小値</td><td class="arrow">→</td>
-      <td class="method">微分法 / 相加相乗平均 / 二次関数の頂点 / 線形計画法</td>
-      <td class="note">変数が1つ→微分。正の変数の和・積→相加相乗。整数制約→線形計画</td></tr>
+  <tr><td class="kw">最大値・最小値（文脈によって手法が変わる）</td><td class="arrow">→</td>
+      <td class="method">微分法（解析）/ 相加相乗平均（代数）/ 二次関数の頂点（代数）/ 線形計画法</td>
+      <td class="note">変数が連続→微分。正の変数の和・積→相加相乗。整数制約あり→線形計画</td></tr>
   <tr><td class="kw">2点間の距離</td><td class="arrow">→</td>
-      <td class="method">座標（距離の公式） / ベクトル（大きさ）</td>
-      <td class="note">座標が与えられていれば距離公式。ベクトルで書かれていれば \(|\vec{AB}|\)</td></tr>
-  <tr><td class="kw">〜を \(n\) で割った余り</td><td class="arrow">→</td>
-      <td class="method">合同式 / 数学的帰納法</td>
-      <td class="note">一般の \(n\) について証明するなら帰納法。具体的な \(n\) なら合同式</td></tr>
-  <tr><td class="kw">等式を証明せよ</td><td class="arrow">→</td>
-      <td class="method">変形して一致を示す / 差を取って0を示す / 帰納法</td>
-      <td class="note">「差＝0」は微分で単調性を確認する方法が強力</td></tr>
-  <tr><td class="kw">不等式を証明せよ</td><td class="arrow">→</td>
-      <td class="method">差を取って符号確認 / 相加相乗平均 / 微分で最小値確認</td>
-      <td class="note">差 \(f(x) - g(x)\) を定義して最小値が0以上であることを示す</td></tr>
-  <tr><td class="kw">関数 \(f(x)\) と実数 \(k\) が絡む</td><td class="arrow">→</td>
-      <td class="method">\(k = f(x)\) とグラフの交点の個数で場合分け</td>
-      <td class="note">グラフを描いて視覚的に確認してから（②実験）式を立てる</td></tr>
-  <tr><td class="kw">整数 \(n\) を含む極限・無限</td><td class="arrow">→</td>
-      <td class="method">数列の極限 / はさみうちの原理</td>
-      <td class="note">\(0 &lt; r &lt; 1\) なら \(r^n \to 0\) は即座に使える</td></tr>
+      <td class="method">座標の距離公式（幾何）/ ベクトルの大きさ（幾何）/ 複素数の絶対値（幾何）</td>
+      <td class="note">表現の形で判断。座標→距離公式。ベクトル→ \(|\vec{AB}|\)。複素平面→ \(|z_1-z_2|\)</td></tr>
+  <tr><td class="kw">等式・不等式を証明せよ</td><td class="arrow">→</td>
+      <td class="method">差を取って0を示す（解析・代数）/ 相加相乗平均（代数）/ 帰納法（代数）</td>
+      <td class="note">関数が絡む→微分で最小値確認。整数に関する命題→帰納法か合同式</td></tr>
   <tr><td class="kw">条件を満たす点の軌跡</td><td class="arrow">→</td>
-      <td class="method">媒介変数消去 / 条件式から \(y = f(x)\) を導く</td>
-      <td class="note">軌跡の問題は「点が存在する範囲」も吟味（⑦）が必要</td></tr>
+      <td class="method">媒介変数消去（解析）/ \(D\geq 0\) で存在条件（解析）/ 複素数の変換 \(w=f(z)\)（幾何）</td>
+      <td class="note">実数の座標ならば解析。複素平面上の点ならば幾何。軌跡は「存在範囲の吟味」も必須</td></tr>
+  <tr><td class="kw">整数 \(n\) を含む極限・無限</td><td class="arrow">→</td>
+      <td class="method">数列の極限（代数）/ はさみうちの原理（解析）</td>
+      <td class="note">\(0<r<1\) なら \(r^n\to 0\) は即座に使える。離散的な \(n\)→数列。連続変数→解析</td></tr>
+  <tr><td class="kw">漸化式と余り（周期性）</td><td class="arrow">→</td>
+      <td class="method">余りの数列（代数の合同式 × 代数の漸化式）</td>
+      <td class="note">\(a_{n+1}\) を \(\bmod m\) で計算 → 余りの数列が必ず周期を持つことを利用</td></tr>
 </table>
 </div>
 
